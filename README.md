@@ -72,7 +72,7 @@
 
 ---
 
-## Guía de ejecución Paso a Paso (Ubuntu WSL y Linux)
+## Guía de ejecución paso a paso (WSL y Linux)
 
 Asegúrate de contar con los paquetes necesarios instalados en WSL:
 ```bash
