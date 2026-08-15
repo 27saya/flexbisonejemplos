@@ -1,0 +1,10 @@
+# Compiled binaries and generated C files
+lex.yy.c
+*.tab.c
+*.tab.h
+fb1-1
+fb1-2
+fb1-3
+fb1-4
+fb1-5
+*.o
