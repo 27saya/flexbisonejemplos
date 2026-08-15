@@ -2,8 +2,8 @@
 
 ## Resumen
 
-* Flex (Analizador léxico): Se encarga de leer el texto carácter por carácter y agrupar secuencias con significado (como números, palabras, operadores o saltos de línea) en unidades llamadas tokens.
-* Bison (Analizador sintáctico): Recibe los tokens producidos por Flex y verifica que cumplan un conjunto de reglas gramaticales (como la estructura de una operación matemática), calculando los resultados o ejecutando acciones asociadas.
+* Flex (léxico): Se encarga de leer el texto carácter por carácter y agrupar secuencias con significado (como números, palabras, operadores o saltos de línea) en unidades llamadas tokens.
+* Bison (sintáctico): Recibe los tokens producidos por Flex y verifica que cumplan un conjunto de reglas gramaticales (como la estructura de una operación matemática), calculando los resultados o ejecutando acciones asociadas.
 
 ---
 
@@ -39,9 +39,9 @@
 * Ubicación: `ejemplo1-3/fb1-3.l`
 * ¿Qué hace?: Identifica y clasifica los elementos de una expresión aritmética elemental, imprimiendo el nombre del token reconocido.
 * Comportamiento:
-  * Reconoce operadores individuales (`+`, `-`, `*`, `/`, `|`) y emite en una línea separada su nombre (`PLUS`, `MINUS`, `TIMeS`, `DIVIDe`, `ABS`).
-  * Reconoce cadenas numéricas enteras (`[0-9]+`) e imprime `NUMBeR` seguido del número leído.
-  * Identifica saltos de línea e imprime `NeWLINe`.
+  * Reconoce operadores individuales (`+`, `-`, `*`, `/`, `|`) y emite en una línea separada su nombre (`PLUS`, `MINUS`, `TIMES`, `DIVIDE`, `ABS`).
+  * Reconoce cadenas numéricas enteras (`[0-9]+`) e imprime `NUMBER` seguido del número leído.
+  * Identifica saltos de línea e imprime `NEWLINE`.
   * Los espacios y tabulaciones son ignorados deliberadamente.
   * Cualquier carácter no reconocido (como una letra u otro símbolo no matemático) genera un mensaje de advertencia: `Mystery character <carácter>`.
 
@@ -51,9 +51,9 @@
 * Ubicación: `ejemplo1-4/fb1-4.l`
 * ¿Qué hace?: Da el siguiente paso lógico hacia un compilador real: en lugar de imprimir directamente texto informativo, asigna códigos numéricos a cada token y almacena valores semánticos.
 * Comportamiento:
-  * Define un enum en C con valores numéricos para cada tipo de token a partir de 258 (`NUMBeR=258`, `ADD=259`, `SUB=260`, etc.).
+  * Define un enum en C con valores numéricos para cada tipo de token a partir de 258 (`NUMBER=258`, `ADD=259`, `SUB=260`, etc.).
   * Cada regla retorna el código numérico correspondiente al ser invocada la función `yylex()`.
-  * en el caso de los números, convierte el texto a un entero real en C usando `atoi()` y lo guarda en la variable global `yylval` antes de retornar `NUMBeR`.
+  * en el caso de los números, convierte el texto a un entero real en C usando `atoi()` y lo guarda en la variable global `yylval` antes de retornar `NUMBER`.
   * el programa principal (`main`) ejecuta un bucle llamando a `yylex()`, mostrando el código del token obtenido y, si es un número, el valor guardado en `yylval`.
 
 ---
@@ -62,19 +62,19 @@
 * Ubicación: `ejemplo1-5/`
 * ¿Qué hace?: es una calculadora aritmética funcional interactiva que evalúa expresiones respetando la precedencia de operadores.
 * Comportamiento:
-  * Flex (`fb1-5.l`): Lee la entrada y extrae tokens (`NUMBeR`, `ADD`, `SUB`, `MUL`, `DIV`, `ABS`, `eOL`), enviándolos a Bison junto con el valor numérico en `yylval`.
+  * Flex (`fb1-5.l`): Lee la entrada y extrae tokens (`NUMBER`, `ADD`, `SUB`, `MUL`, `DIV`, `ABS`, `EOL`), enviándolos a Bison junto con el valor numérico en `yylval`.
   * Bison (`fb1-5.y`): Implementa una gramática libre de contexto estructurada en niveles jerárquicos:
     * `exp` (expresión general: sumas y restas).
     * `factor` (multiplicaciones y divisiones, evaluadas antes que la suma/resta).
     * `term` (números individuales o valor absoluto `ABS term`).
     * `calclist` (permite ingresar y procesar múltiples líneas consecutivas).
-  * Al presionar enter (`eOL`), Bison evalúa el árbol de derivación generado, calcula el resultado aritmético y lo muestra en pantalla precedido por `= `.
+  * Al presionar enter (`EOL`), Bison evalúa el árbol de derivación generado, calcula el resultado aritmético y lo muestra en pantalla precedido por `= `.
 
 ---
 
-## Guía de ejecución Paso a Paso (Ubuntu WSL)
+## Guía de ejecución Paso a Paso (Ubuntu WSL y Linux)
 
-Asegúrate de contar con los paquetes necesarios instalados en Ubuntu WSL:
+Asegúrate de contar con los paquetes necesarios instalados en WSL:
 ```bash
 sudo apt update
 sudo apt install -y flex bison gcc
