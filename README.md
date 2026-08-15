@@ -7,7 +7,7 @@
 
 ---
 
-## Análisis del comportamiento de cada ejemplo
+## Análisis de cada ejemplo
 
 ### Ejemplo 1-1: Contador de palabras (`fb1-1.l`)
 * Ubicación: `ejemplo1-1/fb1-1.l`
@@ -21,7 +21,7 @@
 
 ---
 
-### Ejemplo 1-2: Traductor simple de inglés británico a americano (`fb1-2.l`)
+### Ejemplo 1-2: Traductor de inglés británico a americano (`fb1-2.l`)
 * Ubicación: `ejemplo1-2/fb1-2.l`
 * ¿Qué hace?: Funciona como un filtro de sustitución de texto básico.
 * Comportamiento:
